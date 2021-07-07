@@ -1,7 +1,7 @@
 import 'package:wallpaper_app/model/categories_model.dart';
 String apiKey = "563492ad6f91700001000001dad72cb62b8c49bf97d6d12bf45e0d25";
 List<CategoriesModel> getCategories(){
-  List<CategoriesModel> categories = new List();
+  List<CategoriesModel> categories = [];
   CategoriesModel categoriesModel = new CategoriesModel();
 
   categoriesModel.imgUrl = "https://images.pexels.com/photos/545008/pexels-photo-545008.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";

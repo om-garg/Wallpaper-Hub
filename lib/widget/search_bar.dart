@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatefulWidget {
+  final TextEditingController searchController;
+  final VoidCallback onTap;
+  const SearchBar({
+    this.searchController,
+    this.onTap,
+  });
 
   @override
   _SearchBarState createState() => _SearchBarState();
 }
 
 class _SearchBarState extends State<SearchBar> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,6 +27,7 @@ class _SearchBarState extends State<SearchBar> {
         children: [
           Expanded(
               child: TextField(
+                controller: widget.searchController,
                 cursorHeight: 30,
                 decoration: InputDecoration(
                   hintText: 'search wallpaper',
@@ -28,8 +36,7 @@ class _SearchBarState extends State<SearchBar> {
               ),
           ),
           GestureDetector(
-            onTap: (){
-            },
+            onTap: widget.onTap,
             child: Icon(
               Icons.search,
             ),

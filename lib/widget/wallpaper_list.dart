@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wallpaper_app/model/wallpaper_model.dart';
+import 'package:wallpaper_app/view/image_view.dart';
 
 class WallpaperList extends StatelessWidget {
   final List<WallpaperModel> wallpaper;
@@ -20,11 +21,26 @@ class WallpaperList extends StatelessWidget {
         crossAxisSpacing: 6,
         children: wallpaper.map(
                 (e) => GridTile(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        e.src.portrait,
-                        fit: BoxFit.cover,
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ImageScreen(
+                                  imgUrl: e.src.portrait,
+                                )));
+                      },
+                      child: Hero(
+                        tag: e.src.portrait,
+                        child: Container(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              e.src.portrait,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     )
                 )
