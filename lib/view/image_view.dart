@@ -36,7 +36,7 @@ class _ImageScreenState extends State<ImageScreen> {
               children: <Widget>[
                 InkWell(
                     onTap: () {
-                      // _save();
+                      _save();
                     },
                     child: Stack(
                       children: <Widget>[
@@ -110,22 +110,21 @@ class _ImageScreenState extends State<ImageScreen> {
       ),
     );
   }
-  // _save() async {
-  //   await _askPermission();
-  //   var response = await Dio().get(
-  //       widget.imgUrl,
-  //       options: Options(responseType: ResponseType.bytes));
-  //   final result =
-  //   await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-  //   print(result);
-  //   Navigator.pop(context);
-  // }
-  // _askPermission() async {
-  //   if (Platform.isIOS) {
-  //     /*Map<PermissionGroup, PermissionStatus> permissions =
-  //         */await Permission.photos.request();
-  //   } else {
-  //     /* PermissionStatus permission = */await Permission.storage.status;
-  //   }
-  // }
+  _save() async {
+    await _askPermission();
+    var response = await Dio().get(
+        widget.imgUrl,
+        options: Options(responseType: ResponseType.bytes));
+    final result =
+    await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
+    print(result);
+    Navigator.pop(context);
+  }
+  _askPermission() async {
+    if (Platform.isIOS) {
+      await Permission.photos.request();
+    } else {
+      await Permission.storage.status;
+    }
+  }
 }
