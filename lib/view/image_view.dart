@@ -1,4 +1,9 @@
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class ImageScreen extends StatefulWidget {
   final String imgUrl;
@@ -30,7 +35,9 @@ class _ImageScreenState extends State<ImageScreen> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      // _save();
+                    },
                     child: Stack(
                       children: <Widget>[
                         Container(
@@ -69,13 +76,11 @@ class _ImageScreenState extends State<ImageScreen> {
                                 SizedBox(
                                   height: 1,
                                 ),
-                                // Text(
-                                //   kIsWeb
-                                //       ? "Image will open in new tab to download"
-                                //       : "Image will be saved in gallery",
-                                //   style: TextStyle(
-                                //       fontSize: 8, color: Colors.white70),
-                                // ),
+                                Text(
+                                  "Image will be saved in gallery",
+                                  style: TextStyle(
+                                      fontSize: 8, color: Colors.white70),
+                                ),
                               ],
                             )),
                       ],
@@ -105,4 +110,22 @@ class _ImageScreenState extends State<ImageScreen> {
       ),
     );
   }
+  // _save() async {
+  //   await _askPermission();
+  //   var response = await Dio().get(
+  //       widget.imgUrl,
+  //       options: Options(responseType: ResponseType.bytes));
+  //   final result =
+  //   await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
+  //   print(result);
+  //   Navigator.pop(context);
+  // }
+  // _askPermission() async {
+  //   if (Platform.isIOS) {
+  //     /*Map<PermissionGroup, PermissionStatus> permissions =
+  //         */await Permission.photos.request();
+  //   } else {
+  //     /* PermissionStatus permission = */await Permission.storage.status;
+  //   }
+  // }
 }
